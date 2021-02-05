@@ -1,18 +1,55 @@
 <template>
   <div>
     <el-breadcrumb class="breadcrumb" separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+       <transition-group name="breadcrumb">
+        <el-breadcrumb-item v-for="(item) in levelList" :key="item.path">
+          <router-link
+            v-if="name != item.name"
+            :to="{ path: item.redirect?item.redirect: item.path === '' ? '/' : item.path }"
+          >{{ item.meta.title }}</router-link>
+          <span v-else>{{ item.meta.title }}</span>
+        </el-breadcrumb-item>
+      </transition-group>
     </el-breadcrumb>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { ref, watch, defineComponent } from 'vue';
+import { useRoute, useRouter, RouteLocationMatched } from 'vue-router';
+interface RouteItem {
+	path: '';
+	name: '';
+	redirect: '';
+	meta: { title: '' };
+};
 
-}
+export default defineComponent({
+	setup () {
+		const router = useRouter();
+		const route = useRoute();
+		const name = ref('');
+		const levelList = ref<RouteLocationMatched[]>([]);
+		const getBreadcrumb = () => {
+			// only show routes with meta.title
+			name.value = route.name as string;
+			const matched = route.matched.filter(item => item.meta && item.meta.title);
+			levelList.value = matched.filter((item) => item.meta && item.meta.title && item.meta.breadcrumb !== false);
+			console.log(levelList);
+		};
+		watch(() => router, () => {
+			// 回调函数
+			getBreadcrumb();
+		}, {
+			immediate: true,
+			deep: true
+		});
+		return {
+			name,
+			levelList
+		};
+	}
+});
 </script>
 
 <style lang="less" scoped>

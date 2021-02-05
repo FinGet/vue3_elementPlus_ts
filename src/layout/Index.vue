@@ -6,34 +6,46 @@
       </el-aside>
       <el-container>
         <el-header height="50px">
-          <topbar/>
+          <topbar @reload="handleReload"/>
         </el-header>
         <el-main>
           <breadcrumb/>
-          <app-main/>
+          <div v-if="isRouterAlive">
+            <app-main/>
+          </div>
         </el-main>
+        <el-footer>Footer</el-footer>
       </el-container>
     </el-container>
   </div>
 </template>
 
-<script>
-import { defineComponent, computed } from 'vue'
-import Sidebar from './components/SideBar/Index'
-import Topbar from './components/TopBar'
-import Breadcrumb from './components/Breadcrumb.vue'
-import AppMain from './components/AppMain.vue'
-import { useStore } from 'vuex'
+<script lang="ts">
+import { defineComponent, computed, ref, nextTick } from 'vue';
+import Sidebar from './components/SideBar/Index.vue';
+import Topbar from './components/TopBar.vue';
+import Breadcrumb from './components/Breadcrumb.vue';
+import AppMain from './components/AppMain.vue';
+import { useStore } from 'vuex';
 export default defineComponent({
 	components: { Sidebar, Topbar, Breadcrumb, AppMain },
 	setup () {
-		const store = useStore()
-		const isCollapse = computed(() => !store.state.app.sidebar.opened)
+		const store = useStore();
+		const isCollapse = computed(() => !store.state.app.sidebar.opened);
+		const isRouterAlive = ref<boolean>(true);
+		const handleReload = () => {
+			isRouterAlive.value = false;
+			nextTick(() => {
+				isRouterAlive.value = true;
+			});
+		};
 		return {
-			isCollapse
-		}
+			isCollapse,
+			isRouterAlive,
+			handleReload
+		};
 	}
-})
+});
 </script>
 
 <style lang="less" scoped>

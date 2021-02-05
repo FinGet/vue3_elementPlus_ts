@@ -44,21 +44,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
-import { ElMessage } from 'element-plus'
-import screenfull, { Screenfull } from 'screenfull'
-import { useStore } from 'vuex'
+import { defineComponent, ref, computed, SetupContext } from 'vue';
+import { ElMessage } from 'element-plus';
+import screenfull, { Screenfull } from 'screenfull';
+import { useStore } from 'vuex';
 export default defineComponent({
-	setup () {
-		const store = useStore()
+	setup (props: any, context: SetupContext) {
+		const store = useStore();
 		// const isCollapse = ref<boolean>(store.getters.sidebar)
-		const isCollapse = computed(() => !store.state.app.sidebar.opened)
-		const fullscreen = ref<boolean>(false)
+		const isCollapse = computed(() => !store.state.app.sidebar.opened);
+		const fullscreen = ref<boolean>(false);
 
 		const change = () => {
-			fullscreen.value = (screenfull as Screenfull).isFullscreen
-		}
-		const toggleSideBar = () => store.dispatch('app/toggleSideBar')
+			fullscreen.value = (screenfull as Screenfull).isFullscreen;
+		};
+		const toggleSideBar = () => store.dispatch('app/toggleSideBar');
 		// console.log(mapActions(store._actions))
 		// 全屏事件
 		const handleFullScreen = () => {
@@ -67,22 +67,27 @@ export default defineComponent({
 				ElMessage({
 					message: '暂不不支持全屏',
 					type: 'warning'
-				})
-				return false
+				});
+				return false;
 			}
-			screenfull.toggle()
-		}
+			screenfull.toggle();
+		};
 		if (screenfull.isEnabled) {
-			screenfull.on('change', change)
+			screenfull.on('change', change);
 		}
+
+		const reload = () => {
+			context.emit('reload');
+		};
 		return {
 			isCollapse,
 			fullscreen,
 			handleFullScreen,
-			toggleSideBar
-		}
+			toggleSideBar,
+			reload
+		};
 	}
-})
+});
 </script>
 
 <style lang="less" scoped>

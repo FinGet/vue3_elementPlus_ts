@@ -17,8 +17,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { defineComponent, toRefs, reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 interface UserForm {
 	email: string;
@@ -27,14 +27,14 @@ interface UserForm {
 
 export default defineComponent({
 	setup () {
-		const router = useRouter()
+		const router = useRouter();
 		const state = reactive({
 			form: {
 				email: 'admin',
 				pass: 'admin123'
 			} as UserForm,
 			ruleForm: ref<any>(null)
-		})
+		});
 
 		// const ruleForm = ref<any>(null)
 
@@ -43,18 +43,18 @@ export default defineComponent({
 			state.ruleForm.validate().then((valid: boolean) => {
 				if (valid) {
 					if (state.form.email === 'admin') {
-						router.push({ path: '/' })
+						router.push({ path: '/' });
 					}
 				}
-			})
-		}
+			});
+		};
 
 		return {
 			...toRefs(state),
 			onSubmit
-		}
+		};
 	}
-})
+});
 </script>
 
 <style lang="less" scoped>
