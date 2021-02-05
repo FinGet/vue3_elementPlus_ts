@@ -17,12 +17,6 @@
 <script lang="ts">
 import { ref, watch, defineComponent } from 'vue';
 import { useRoute, useRouter, RouteLocationMatched } from 'vue-router';
-interface RouteItem {
-	path: '';
-	name: '';
-	redirect: '';
-	meta: { title: '' };
-};
 
 export default defineComponent({
 	setup () {
@@ -38,7 +32,6 @@ export default defineComponent({
 			console.log(levelList);
 		};
 		watch(() => router, () => {
-			// 回调函数
 			getBreadcrumb();
 		}, {
 			immediate: true,
