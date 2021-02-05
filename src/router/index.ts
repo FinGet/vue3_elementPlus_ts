@@ -11,7 +11,7 @@ export const routes = [
 	{
 		path: '/',
 		component: Layout,
-		redirect: '/home',
+		redirect: 'home',
 		children: [
 			{
 				path: 'home',
@@ -23,6 +23,7 @@ export const routes = [
 				path: 'test',
 				component: BlankLayout,
 				name: 'Test',
+				redirect: 'index',
 				meta: { title: '测试', icon: 'el-icon-s-home' },
 				children: [
 					{

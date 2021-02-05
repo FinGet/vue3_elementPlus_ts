@@ -29,7 +29,6 @@ export default defineComponent({
 			name.value = route.name as string;
 			const matched = route.matched.filter(item => item.meta && item.meta.title);
 			levelList.value = matched.filter((item) => item.meta && item.meta.title && item.meta.breadcrumb !== false);
-			console.log(levelList);
 		};
 		watch(() => router, () => {
 			getBreadcrumb();
