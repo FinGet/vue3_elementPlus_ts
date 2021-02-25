@@ -2,10 +2,9 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import Layout from '@/layout/Index.vue';
 import BlankLayout from '@/layout/BlankLayout.vue';
-
-const files = require.context('../views', true, /\.vue$/); // 根据目录结构去搜索文件
-const filesKey = files.keys(); // 获取整个目录结构
-console.log(filesKey);
+// const files = require.context('../views', true, /\.vue$/); // 根据目录结构去搜索文件
+// const filesKey = files.keys(); // 获取整个目录结构
+// console.log(filesKey);
 
 export const routes = [
 	{
@@ -22,6 +21,7 @@ export const routes = [
 			{
 				path: 'test',
 				component: BlankLayout,
+				// component: { render (h: any) { return h('router-view'); } },
 				name: 'Test',
 				redirect: 'index',
 				meta: { title: '测试', icon: 'el-icon-s-home' },
