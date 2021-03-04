@@ -19,18 +19,18 @@ export const routes = [
 				meta: { title: '首页', icon: 'el-icon-s-home' }
 			},
 			{
-				path: 'test',
+				path: 'table',
 				component: BlankLayout,
 				// component: { render (h: any) { return h('router-view'); } },
-				name: 'Test',
+				name: 'Table',
 				redirect: 'index',
-				meta: { title: '测试', icon: 'el-icon-s-home' },
+				meta: { title: '表格', icon: 'el-icon-s-data' },
 				children: [
 					{
 						path: 'index',
-						component: () => import('@/views/Test.vue'),
+						component: () => import('@/views/Table.vue'),
 						name: 'Index',
-						meta: { title: '测试' }
+						meta: { title: '表格' }
 					},
 					{
 						path: 'second',

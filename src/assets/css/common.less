@@ -2,6 +2,7 @@
 @import './variables.less';
 @import './transform.less';
 @import './sidebar.less';
+@import './element_ui.less';
 
 * {
 	margin:0;
@@ -230,3 +231,19 @@ html,body,#app,.wrapper{
 	flex-wrap: wrap;
 }
 //------------- flex布局 end ----------------//
+
+.btn {
+	color: #409EFF;
+	font-size: 14px;
+	text-decoration: none;
+	padding: 2px 3px;
+	&:hover {
+		color: #66b1ff;
+	}
+	&.red {
+		color: #f56c6c;
+		&:hover {
+			color: #f78989;
+		}
+	}
+}

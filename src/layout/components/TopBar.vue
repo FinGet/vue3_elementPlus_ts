@@ -9,7 +9,7 @@
     <div class="user-info">
       <el-dropdown>
         <span class="el-dropdown-link">
-          admin<i class="el-icon-arrow-down el-icon--right"></i>
+          <span style="font-size:16px;font-weight:500;">admin</span><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <template #dropdown>
           <el-dropdown-menu >

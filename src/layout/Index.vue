@@ -14,7 +14,7 @@
             <app-main/>
           </div>
         </el-main>
-        <el-footer>Footer</el-footer>
+        <el-footer style="line-height: 60px;text-align: center;">Vue3 + ts + Element Plus 后台管理系统模板</el-footer>
       </el-container>
     </el-container>
   </div>

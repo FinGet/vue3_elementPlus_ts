@@ -2,13 +2,13 @@
   <div v-if="!item.hidden" class="menu-wrapper">
    <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
-				<i :class="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)"></i>
+				<i :class="[onlyOneChild.meta.icon||(item.meta&&item.meta.icon), 'icon']"></i>
 				<template #title><span>{{onlyOneChild.meta.title}}</span></template>
       </el-menu-item>
     </template>
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)">
 			<template v-slot:title>
-				<i :class="item.meta && item.meta.icon"></i>
+				<i :class="[item.meta && item.meta.icon, 'icon']"></i>
 				<span>{{item.meta.title}}</span>
 			</template>
       <sidebar-item
@@ -79,5 +79,9 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-
+.icon {
+	// margin-bottom: 3px;
+	display: inline-block;
+	vertical-align: top;
+}
 </style>

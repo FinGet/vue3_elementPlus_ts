@@ -25,6 +25,9 @@ import { useStore, mapGetters } from 'vuex';
 
 export default defineComponent({
 	components: { Logo, SidebarItem },
+	// computed: {
+	// 	...mapGetters(['sidebar', 'routes'])
+	// },
 	setup () {
 		const store = useStore();
 		const route = useRoute();
@@ -35,12 +38,11 @@ export default defineComponent({
 			}
 			return path;
 		});
-		const isCollapse = computed(() => !store.state.app.sidebar.opened);
-		// console.log(mapState(store.state),'mapState')
-		const routes = computed(() => store.state.permission.routes.find((item: any) => item.path === '/').children);
-		// console.log(mapMutations(store._mutations),'mapMutations')
-		// console.log(mapActions(store._actions),'mapActions')
-		console.log(mapGetters(['routers']));
+		const isCollapse = computed(() => !store.getters.sidebar.opened);
+		// console.log(mapState(['permission']), 'mapState');
+		const routes = computed(() => store.getters.routes.find((item: any) => item.path === '/').children);
+		// const r = computed(() => mapGetters(['routes']));
+		console.log(mapGetters(['routes']));
 		const handleOpen = () => {
 			// to do
 		};
@@ -54,9 +56,6 @@ export default defineComponent({
 			routes,
 			activeMenu
 		};
-	},
-	methods: {
-
 	}
 });
 </script>
