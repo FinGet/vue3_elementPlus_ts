@@ -1,13 +1,13 @@
 <template>
   <div>
 		<el-form :inline="true" :model="form" class="demo-form-inline">
-			<el-form-item label="审批人">
-				<el-input v-model="form.user" placeholder="审批人"></el-input>
+			<el-form-item label="姓名">
+				<el-input v-model="form.user" placeholder="姓名"></el-input>
 			</el-form-item>
-			<el-form-item label="活动区域">
-				<el-select v-model="form.region" placeholder="活动区域">
-					<el-option label="区域一" value="shanghai"></el-option>
-					<el-option label="区域二" value="beijing"></el-option>
+			<el-form-item label="年级">
+				<el-select v-model="form.grade" placeholder="选择年级">
+					<el-option label="一年级" value="1"></el-option>
+					<el-option label="二年级" value="2"></el-option>
 				</el-select>
 			</el-form-item>
 			<el-form-item>
@@ -16,12 +16,14 @@
 		</el-form>
     <HeroTable
       :allowSelect="true"
-      height="250"
       :data="tableData"
       :columns="columns"
       @select="handleSelect"
       @pagingChange="handlePagingChange"
     >
+			<template v-slot:dateHeader>
+				<el-tag type="success">日期</el-tag>
+			</template>
 			<template v-slot:date="scope" >
 				{{scope.data.date}}自定义slot
 			</template>
@@ -90,17 +92,17 @@ export default defineComponent({
 			school: '成都市泡桐树小学'
 		}];
 		const columns = [
-			{ prop: 'date', label: '日期', fixed: true, width: 200, slot: 'date' },
+			{ prop: 'date', label: '日期', fixed: true, width: 200, slot: { body: 'date', header: 'dateHeader' } },
 			{ prop: 'name', label: '姓名', width: 200 },
 			{ prop: 'address', label: '地址', width: 500 },
 			{ prop: 'class', label: '班级', width: 200 },
 			{ prop: 'school', label: '学校', width: 200 },
-			{ prop: '', label: '操作', width: 90, slot: 'action', fixed: 'right' }
+			{ prop: '', label: '操作', width: 90, slot: { body: 'action' }, fixed: 'right' }
 		];
 		const state = reactive({
 			form: {
 				user: '',
-				region: ''
+				grade: ''
 			}
 		});
 		const handleSelect = (val) => {

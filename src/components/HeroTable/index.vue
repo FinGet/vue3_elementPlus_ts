@@ -11,31 +11,30 @@
 		<el-table-column v-if="allowSelect" type="selection" width="55"></el-table-column>
 		<template v-for="item in columns" :key="item.prop">
 			<el-table-column v-bind="item" v-if="item.slot" >
-				<template v-slot="scope">
-					<slot :name="item.slot" :data="scope.row"/>
+				<template v-slot:header>
+					<slot :name="item.slot.header">{{item.label || '自定义header'}}</slot>
+				</template>
+				<template v-slot:default="scope">
+					<slot :name="item.slot.body" :data="scope.row">{{scope.row[item.prop] || '需要自定义' }}</slot>
 				</template>
 			</el-table-column>
 			<el-table-column v-else v-bind="item"></el-table-column>
 		</template>
 		<slot/>
 	</el-table>
-	<el-pagination
-		background
+	<HeroPaging
+		v-if="showPaging"
 		class="marginT10 text-right"
-		:onSizeChange="handleSizeChange"
-		:onCurrentChange="handleCurrentChange"
-		:current-page="pagination.page"
-		:page-sizes="[10, 20, 50]"
-		:page-size="pagination.pageSize"
-		layout="total, sizes, prev, pager, next, jumper"
-		:total="pagination.total">
-	</el-pagination>
+		:pagination="pagination"
+		@pagingChange="handlePagingChange"/>
 </div>
 </template>
 
 <script>
 import { defineComponent, PropType } from 'vue';
+import HeroPaging from '../HeroPaging/index';
 export default defineComponent({
+	components: { HeroPaging },
 	props: {
 		data: {
 			type: Array,
@@ -62,24 +61,24 @@ export default defineComponent({
 		allowSelect: {
 			type: Boolean,
 			default: false
+		},
+		showPaging: {
+			type: Boolean,
+			default: true
 		}
 	},
 	setup (props, { emit, slots, attrs }) {
 		let multipleSelection = [];
-		const handleSizeChange = (pageSize) => {
-			emit('pagingChange', { type: 'pageSize', val: pageSize });
-		};
-		const handleCurrentChange = (page) => {
-			emit('pagingChange', { type: 'page', val: page });
-		};
 		const handleSelectionChange = (val) => {
 			multipleSelection = val;
 			emit('select', multipleSelection);
 		};
+		const handlePagingChange = (option) => {
+			emit('pagingChange', option);
+		};
 		return {
-			handleSizeChange,
-			handleCurrentChange,
-			handleSelectionChange
+			handleSelectionChange,
+			handlePagingChange
 		};
 	}
 });
