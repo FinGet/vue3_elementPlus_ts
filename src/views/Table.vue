@@ -23,16 +23,12 @@
       @pagingChange="handlePagingChange"
     >
 			<template v-slot:date="scope" >
-				{{scope}}
-				sdfsd
+				{{scope.data.date}}自定义slot
 			</template>
-      <el-table-column
-        width="90"
-        fixed="right"
-        label="操作" >
-        <a href="#" class="btn">编辑</a>
-        <a href="#" class="btn red">删除</a>
-      </el-table-column>
+			<template v-slot:action="scope">
+				<a href="#" class="btn" @click="handleCLick(scope.data)">编辑</a>
+				<a href="#" class="btn red">删除</a>
+			</template>
     </HeroTable>
   </div>
 </template>
@@ -98,8 +94,8 @@ export default defineComponent({
 			{ prop: 'name', label: '姓名', width: 200 },
 			{ prop: 'address', label: '地址', width: 500 },
 			{ prop: 'class', label: '班级', width: 200 },
-			{ prop: 'school', label: '学校', width: 200 }
-
+			{ prop: 'school', label: '学校', width: 200 },
+			{ prop: '', label: '操作', width: 90, slot: 'action', fixed: 'right' }
 		];
 		const state = reactive({
 			form: {
@@ -116,13 +112,17 @@ export default defineComponent({
 		const onSubmit = () => {
 			console.log('onSubmit');
 		};
+		const handleCLick = (scope) => {
+			console.log(scope);
+		};
 		return {
 			...toRefs(state),
 			tableData,
 			columns,
 			handleSelect,
 			handlePagingChange,
-			onSubmit
+			onSubmit,
+			handleCLick
 		};
 	}
 });

@@ -1,4 +1,4 @@
-import HeroTable from './HeroTable';
+import HeroTable from './HeroTable/index.vue';
 
 export {
 	HeroTable
