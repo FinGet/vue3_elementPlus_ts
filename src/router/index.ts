@@ -19,24 +19,24 @@ export const routes = [
 				meta: { title: '首页', icon: 'el-icon-s-home' }
 			},
 			{
-				path: 'table',
+				path: 'data',
 				component: BlankLayout,
 				// component: { render (h: any) { return h('router-view'); } },
-				name: 'Table',
-				redirect: 'index',
-				meta: { title: '表格', icon: 'el-icon-s-data' },
+				name: 'Data',
+				redirect: 'table',
+				meta: { title: '数据', icon: 'el-icon-s-data' },
 				children: [
 					{
-						path: 'index',
+						path: 'table',
 						component: () => import('@/views/Table.vue'),
-						name: 'Index',
+						name: 'Table',
 						meta: { title: '表格' }
 					},
 					{
-						path: 'second',
-						component: () => import('@/views/test/second.vue'),
-						name: 'Second',
-						meta: { title: 'second' }
+						path: 'form',
+						component: () => import('@/views/Form.vue'),
+						name: 'Form',
+						meta: { title: '表单' }
 					}
 				]
 			}

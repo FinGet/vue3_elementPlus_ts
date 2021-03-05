@@ -14,24 +14,26 @@
 				<el-button type="primary" @click="onSubmit">查询</el-button>
 			</el-form-item>
 		</el-form>
-    <HeroTable
-      :allowSelect="true"
-      :data="tableData"
-      :columns="columns"
-      @select="handleSelect"
-      @pagingChange="handlePagingChange"
-    >
-			<template v-slot:dateHeader>
-				<el-tag type="success">日期</el-tag>
-			</template>
-			<template v-slot:date="scope" >
-				{{scope.data.date}}自定义slot
-			</template>
-			<template v-slot:action="scope">
-				<a href="#" class="btn" @click="handleCLick(scope.data)">编辑</a>
-				<a href="#" class="btn red">删除</a>
-			</template>
-    </HeroTable>
+    <div>
+			<HeroTable
+				:allowSelect="true"
+				:data="tableData"
+				:columns="columns"
+				@select="handleSelect"
+				@pagingChange="handlePagingChange"
+			>
+				<template v-slot:dateHeader>
+					<el-tag type="success">日期</el-tag>
+				</template>
+				<template v-slot:date="scope" >
+					{{scope.data.date}}自定义slot
+				</template>
+				<template v-slot:action="scope">
+					<a href="#" class="btn" @click="handleCLick(scope.data)">编辑</a>
+					<a href="#" class="btn red">删除</a>
+				</template>
+			</HeroTable>
+		</div>
   </div>
 </template>
 
@@ -105,26 +107,27 @@ export default defineComponent({
 				grade: ''
 			}
 		});
-		const handleSelect = (val) => {
-			console.log(val);
+
+		const methods = {
+			handleSelect: (val) => {
+				console.log(val);
+			},
+			handlePagingChange: (option) => {
+				console.log(option);
+			},
+			onSubmit: () => {
+				console.log('onSubmit');
+			},
+			handleCLick: (scope) => {
+				console.log(scope);
+			}
 		};
-		const handlePagingChange = (option) => {
-			console.log(option);
-		};
-		const onSubmit = () => {
-			console.log('onSubmit');
-		};
-		const handleCLick = (scope) => {
-			console.log(scope);
-		};
+
 		return {
 			...toRefs(state),
 			tableData,
 			columns,
-			handleSelect,
-			handlePagingChange,
-			onSubmit,
-			handleCLick
+			...methods
 		};
 	}
 });

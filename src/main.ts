@@ -6,9 +6,14 @@ import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 import '@/assets/css/common.less';
 import locale from 'element-plus/lib/locale/lang/zh-cn';
+// import { highlightjs } from '@/utils/directives';
+// import hljs from 'highlight.js';
+// import 'highlight.js/styles/monokai-sublime.css';
 
 const app = createApp(App);
 app.config.performance = true;
+// app.directive('highlight', highlightjs);
+// app.use(hljs.vuePlugin);
 app.use(ElementPlus, { size: 'small', locale });
 app.use(store);
 app.use(router);

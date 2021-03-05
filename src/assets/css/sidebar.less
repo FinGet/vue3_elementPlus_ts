@@ -68,7 +68,7 @@
 	.el-submenu.is-active,.el-menu-item.is-active {
 		background-color: @menuActiveBg !important;
 	}
-	.is-active>.el-submenu__title {
+	.is-active>.el-submenu__title, .is-active>.el-submenu__title i{
 		color: @subMenuActiveText !important;
 	}
 	& .nest-menu .el-submenu>.el-submenu__title,
@@ -137,6 +137,7 @@
 	}
 }
 
+.el-submenu .el-menu-item,
 .el-menu-item, .el-submenu__title {
 	height: 43px;
 	line-height: 43px;

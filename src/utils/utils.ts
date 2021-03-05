@@ -20,3 +20,9 @@ export function throttle (this: any, fn: Function, interval = 500) {
 		fn.apply(this, args);
 	};
 }
+
+export function html2Escape (sHtml: string) {
+	return sHtml.replace(/[<>&"]/g, function (c) {
+		return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c];
+	});
+}
