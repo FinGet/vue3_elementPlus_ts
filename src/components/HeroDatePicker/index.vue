@@ -15,9 +15,8 @@ format: https://day.js.org/docs/zh-CN/display/format
 </template>
 
 <script>
-import { defineComponent, watch, computed, reactive, toRefs } from 'vue';
+import { defineComponent, watch, reactive, toRefs } from 'vue';
 import dayjs from 'dayjs';
-// import { throttle } from '@/utils/utils';
 export default defineComponent({
 	props: {
 		type: {

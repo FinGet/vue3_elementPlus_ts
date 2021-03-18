@@ -6,16 +6,13 @@ import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 import '@/assets/css/common.less';
 import locale from 'element-plus/lib/locale/lang/zh-cn';
-import { dialogDrag } from '@/utils/directives';
-// import hljs from 'highlight.js';
-// import 'highlight.js/styles/monokai-sublime.css';
-
+import axios from '@/utils/request';
 const app = createApp(App);
 app.config.performance = true;
-// app.directive('highlight', highlightjs);
-// app.use(hljs.vuePlugin);
-app.directive('dialogDrag', dialogDrag);
 app.use(ElementPlus, { size: 'small', locale });
+
+app.config.globalProperties.$http = axios;
+
 app.use(store);
 app.use(router);
 app.mount('#app');

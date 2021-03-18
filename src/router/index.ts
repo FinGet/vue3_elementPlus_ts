@@ -2,10 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import Layout from '@/layout/Index.vue';
 import BlankLayout from '@/layout/BlankLayout.vue';
-// const files = require.context('../views', true, /\.vue$/); // 根据目录结构去搜索文件
-// const filesKey = files.keys(); // 获取整个目录结构
-// console.log(filesKey);
-
+// : Array<RouteRecordRaw>
 export const routes = [
 	{
 		path: '/',

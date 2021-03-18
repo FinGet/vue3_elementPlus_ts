@@ -1,32 +1,6 @@
-import hljs from 'highlight.js';
-
-export const highlightjs = {
-	deep: true,
-	beforeMount (el: any) {
-		// on first bind, highlight all targets
-		let blocks = el.querySelectorAll('pre code');
-		for (let i = 0; i < blocks.length; i++) {
-			let item = blocks[i];
-			console.log(item);
-			hljs.highlightBlock(item);
-		}
-	},
-	// called after the containing component's VNode and the VNodes of its children // have updated
-	updated (el: any, binding: any) {
-		// after an update, re-fill the content and then highlight
-		let targets = el.querySelectorAll('code');
-		for (let i = 0; i < targets.length; i += 1) {
-			let target = targets[i];
-			if (typeof binding.value === 'string') {
-				target.textContent = binding.value;
-			}
-			hljs.highlightBlock(target);
-		}
-	}
-};
-
 export const dialogDrag = {
 	mounted (el, binding, vnode, oldVnode) {
+		console.log(el);
 		const dialogHeaderEl = el.querySelector('.el-dialog__header');
 		const dragDom = el.querySelector('.el-dialog');
 		// dialogHeaderEl.style.cursor = 'move';
@@ -35,11 +9,11 @@ export const dialogDrag = {
 
 		// 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
 		const sty = (function () {
-			// if (window.document.currentStyle) {
-			// 	return (dom, attr) => dom.currentStyle[attr];
-			// } else {
-			return (dom, attr) => getComputedStyle(dom, null)[attr];
-			// }
+			if ((window.document as any).currentStyle) {
+				return (dom, attr) => dom.currentStyle[attr];
+			} else {
+				return (dom, attr) => getComputedStyle(dom, null)[attr];
+			}
 		})();
 
 		dialogHeaderEl.onmousedown = (e) => {

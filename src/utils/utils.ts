@@ -22,7 +22,8 @@ export function throttle (this: any, fn: Function, interval = 500) {
 }
 
 export function html2Escape (sHtml: string) {
-	return sHtml.replace(/[<>&"]/g, function (c) {
-		return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c];
+	const dict = { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' };
+	return sHtml.replace(/[<>&"]/g, (c: string) => {
+		return dict[c];
 	});
 }

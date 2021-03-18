@@ -3535,10 +3535,10 @@ electron-to-chromium@^1.3.634:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.640.tgz#94e68c0ae79181a1d6fd1ed9a42b9790d51a1bca"
   integrity sha512-cU6wQdXYzuSPzLdszsa4whStYfmU7CVNnG6c5z6/z9YlCOQ2Xh/uKB1gTxlIRr0ubgSg1/dZuSbUAoeESeQ3sQ==
 
-element-plus@^1.0.1-beta.26:
-  version "1.0.1-beta.26"
-  resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-1.0.1-beta.26.tgz#f24181aab2569b62ca01e63541209b70d524b8ab"
-  integrity sha512-nFzkn31AlZ+bXjnAAeXRoewesC57fI6yaUbxZaE+f1maj9ll5dbtiwk6petJhYvjQ3si4fN3A9P/qZA3ZPeyMg==
+element-plus@^1.0.2-beta.35:
+  version "1.0.2-beta.35"
+  resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-1.0.2-beta.35.tgz#158890bddf28f8495f261d02789bf394c5c97123"
+  integrity sha512-T12EfxbWoNOrWE2bzXFPJdOU3cl4YWuLwxE5QKM40oPw1VYPMRrRB8Uy5TwF8h3itxzsJQ5iFj2rdDO+q3Jcdg==
   dependencies:
     "@popperjs/core" "^2.4.4"
     async-validator "^3.4.0"
@@ -4722,11 +4722,6 @@ highlight.js@^10.0.0:
   version "10.5.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.5.0.tgz#3f09fede6a865757378f2d9ebdcbc15ba268f98f"
   integrity sha512-xTmvd9HiIHR6L53TMC7TKolEj65zG1XU+Onr8oi86mYa+nLcIbxTTWkpW7CsEwv/vK7u1zb8alZIMLDqqN6KTw==
-
-highlight.js@^10.6.0:
-  version "10.6.0"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.6.0.tgz#0073aa71d566906965ba6e1b7be7b2682f5e18b6"
-  integrity sha512-8mlRcn5vk/r4+QcqerapwBYTe+iPL5ih6xrNylxrnBdHQiijDETfXX7VIxC3UiCRiINBJfANBAsPzAvRQj8RpQ==
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
