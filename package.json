@@ -10,9 +10,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "element-plus": "^1.0.2-beta.35",
+    "element-plus": "^1.2.0-beta.5",
     "screenfull": "^5.1.0",
-    "vue": "^3.0.0",
+    "vue": "^3.2.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
