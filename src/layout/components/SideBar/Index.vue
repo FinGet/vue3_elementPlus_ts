@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import SidebarItem from './SideBarItem.vue';
+import SidebarItem from './SidebarItem.vue';
 import Logo from './Logo.vue';
 import { useRoute } from 'vue-router';
 import { useStore, mapGetters } from 'vuex';

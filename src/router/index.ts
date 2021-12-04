@@ -36,6 +36,12 @@ export const routes = [
 						meta: { title: '表单' }
 					}
 				]
+			},
+			{
+				path: 'todo',
+				component: () => import('@/views/Todo.vue'),
+				name: 'Todo',
+				meta: { title: '代办事项', icon: 'el-icon-notebook-1' }
 			}
 
 		]

@@ -3,6 +3,7 @@
 @import './transform.less';
 @import './sidebar.less';
 @import './element_ui.less';
+@import './mixin.less';
 
 * {
 	margin:0;
@@ -19,93 +20,31 @@ html,body,#app,.wrapper{
 .height100 {
 	height: 100% !important;
 }
-.width50px {
-	width: 50px;
-}
-.width100px {
-	width: 100px;
-}
-.width200px {
-	width: 200px;
-}
-.width300px {
-	width: 300px;
-}
+
+.generate-width(400);
+
 //------------- 常用margin,padding start ----------------//
-.marginT5{
-	margin-top: 5px !important;
-}
-.marginT10{
-	margin-top: 10px !important;
-}
-.marginT15{
-	margin-top: 15px !important;
-}
-.marginT20{
-	margin-top: 20px !important;
-}
-.marginT25{
-	margin-top: 25px !important;
-}
-.marginT30{
-	margin-top: 30px !important;
-}
-.marginB5{
-	margin-bottom: 5px !important;
-}
-.marginB10{
-	margin-bottom: 10px !important;
-}
-.marginB15{
-	margin-bottom: 15px !important;
-}
-.marginB20{
-	margin-bottom: 20px !important;
-}
-.marginB25{
-	margin-bottom: 25px !important;
-}
-.marginB30{
-	margin-bottom: 30px !important;
-}
-.marginL5 {
-	margin-left: 5px !important;
-}
-.marginL10{
-	margin-left: 10px !important;
-}
-.marginL15{
-	margin-left: 15px !important;
-}
-.marginL20{
-	margin-left: 20px !important;
-}
-.marginL25{
-	margin-left: 25px !important;
-}
-.marginL30{
-	margin-left: 30px !important;
-}
-.marginR5{
-	margin-right: 5px !important;
-}
-.marginR10{
-	margin-right: 10px !important;
-}
-.marginR15{
-	margin-right: 15px !important;
-}
-.marginR20{
-	margin-right: 20px !important;
-}
-.marginR25{
-	margin-right: 25px !important;
-}
-.marginR30{
-	margin-right: 30px !important;
-}
+.generate-margin(30, T, top);
+.generate-margin(30, B, bottom);
+.generate-margin(30, L, left);
+.generate-margin(30, R, right);
+//------------- 常用margin,padding end ----------------//
+.generate-padding(30, T, top);
+.generate-padding(30, B, bottom);
+.generate-padding(30, L, left);
+.generate-padding(30, R, right);
+
 
 //------------- 常用margin,padding end ----------------//
+
+@align: left, right, center;
+// .text-center .text-left .text-right 
+each(@align, {
+  .text-@{value} {
+    text-align: @value;
+  }
+});
+
 
 .clearfix:after {
 	visibility: hidden;
@@ -127,15 +66,7 @@ html,body,#app,.wrapper{
 	text-overflow: ellipsis;
 	overflow: hidden
 }
-.text-center {
-  text-align: center;
-}
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
-}
+
 
 //------------- flex布局 start ----------------//
 
@@ -168,67 +99,41 @@ html,body,#app,.wrapper{
 }
 
 .flex-row {
-	-webkit-flex-direction: row;
-	-moz-flex-direction: row;
-	-ms-flex-direction: row;
-	-o-flex-direction: row;
-	flex-direction: row;
+	.flex(flex-direction, row)
 }
 
 .flex-column {
-	-webkit-flex-direction: column;
-	-moz-flex-direction: column;
-	-ms-flex-direction: column;
-	-o-flex-direction: column;
-	flex-direction: column;
+	.flex(flex-direction, column)
 }
 
 .j-c-c {
-	-webkit-justify-content: center;
-	-moz-justify-content: center;
-	-ms-justify-content: center;
-	-o-justify-content: center;
-	justify-content: center;
-}
-.j-c-s-b {
-	-webkit-justify-content: space-between;
-	-moz-justify-content: space-between;
-	-ms-justify-content: space-between;
-	-o-justify-content: space-between;
-	justify-content: space-between;
+	.flex(justify-content, center)
 }
 
 .j-c-f-e {
-	-webkit-justify-content: flex-end;
-	-moz-justify-content: flex-end;
-	-ms-justify-content: flex-end;
-	-o-justify-content: flex-end;
-	justify-content: flex-end;
+	.flex(justify-content, flex-end)
 }
 
+.j-c-s-b {
+	.flex(justify-content, space-between)
+}
 
 .j-c-s-a {
-	-webkit-justify-content: space-around;
-	-moz-justify-content: space-around;
-	-ms-justify-content: space-around;
-	-o-justify-content: space-around;
-	justify-content: space-around;
+	.flex(justify-content, space-around)
 }
 
 .a-i-c {
-	-webkit-align-items: center;
-	-moz-align-items: center;
-	-ms-align-items: center;
-	-o-align-items: center;
-	align-items: center;
+	.flex(align-items, center)
 }
 
 .flex-wrap {
-	-webkit-flex-wrap: wrap;
-	-moz-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	-o-flex-wrap: wrap;
-	flex-wrap: wrap;
+	.flex(flex-wrap, wrap)
+}
+
+.flex-center {
+	.display-flex();
+	.j-c-c();
+	.a-i-c();
 }
 //------------- flex布局 end ----------------//
 

@@ -39,13 +39,17 @@ const err = (error) => {
 	}
 	return Promise.reject(error);
 };
-instance.interceptors.request.use((config: AxiosRequestConfig) => {
+
+type Config = AxiosRequestConfig & { successNotice? : boolean, errorNotice? : boolean}
+
+instance.interceptors.request.use((config: Config) => {
+	config.headers['Access-Token'] = localStorage.getItem('token') || '';
 	return config;
 }, err);
 
 instance.interceptors.response.use((response: AxiosResponse) => {
 	console.log(response);
-	const config: AxiosRequestConfig = response.config || '';
+	const config: Config = response.config || '';
 
 	const code = Number(response.data.status);
 	if (code === 200) {

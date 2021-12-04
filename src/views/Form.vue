@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { HeroForm } from '@/components';
 import { defineComponent, reactive, ref, toRefs } from '@vue/runtime-core';
 export default defineComponent({
@@ -71,7 +71,7 @@ export default defineComponent({
 		});
 		const formRef = ref(null);
 		const onSubmit = () => {
-			formRef.value.validate().then(valid => {
+			(formRef as any).value.value.validate().then(valid => {
 				console.log(valid);
 				if (valid) {
 
